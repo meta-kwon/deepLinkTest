@@ -1,15 +1,11 @@
 import { NextSeo } from 'next-seo';
 
+console.log('ver 1');
+
 export default function Home() {
   const path = 'metavity';
   const param = 'dhLAheDvH6pE6Bu9d2vYXv';
   const intentUri = `intent://${path}?${param}#Intent;scheme=there_v1;package=com.metacamp.metathere;end`;
-  // function openAndroid() {
-  //   location.href = intentUri;
-
-  //   alert(`${intentUri}/초대코드: dhLAheDvH6pE6Bu9d2vYXv`);
-  //   location.href = intentUri;
-  // }
 
   const Index = () => {
     return (
@@ -20,7 +16,7 @@ export default function Home() {
           additionalLinkTags={[
             {
               rel: 'alternate',
-              href: `there_v1://${path}?${param}`,
+              href: intentUri,
             },
           ]}
           openGraph={{
