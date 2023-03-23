@@ -6,6 +6,7 @@ export default function Home() {
   function openAndroid() {
     const intentUri =
       'intent://path/#Intent;scheme=there_v1;package=com.metacamp.metathere;end';
+    alert(intentUri);
     location.href = intentUri;
   }
 
