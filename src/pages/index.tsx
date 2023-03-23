@@ -1,7 +1,30 @@
 export default function Home() {
-  // const packageName = 'com.metacamp.metathere';
-  // const scheme = 'myapp://path';
-  // const storeUrl = 'market://details?id=' + packageName + '&hl=ko';
+  const packageName = 'com.metacamp.metathere';
+  const scheme = 'myapp://path';
+  const androidMarketUrl = 'market://details?id=' + packageName + '&hl=ko';
+
+  function openAndroid() {
+    const intentUri =
+      'intent://path/#Intent;scheme=unitydl;package=com.metacamp.metathere;end';
+    location.href = intentUri;
+  }
+
+  function goStore() {
+    const startTime = +new Date();
+
+    setTimeout(function () {
+      const now = +new Date();
+      if (now - startTime < 1000) {
+        let marketUrl = '';
+
+        marketUrl = androidMarketUrl;
+
+        location.href = marketUrl;
+      }
+    }, 500);
+
+    openAndroid();
+  }
 
   // // Intent 생성
   // let intent = null;
@@ -71,7 +94,7 @@ export default function Home() {
           justifyContent: 'center',
         }}
       >
-        <button style={{ width: 700, height: 700 }} onClick={testClick}>
+        <button style={{ width: 700, height: 700 }} onClick={openAndroid}>
           실행
         </button>
       </div>

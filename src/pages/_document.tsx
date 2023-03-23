@@ -16,6 +16,12 @@ export default class MyDocument extends Document {
           <link rel="shortcut icon" href="/favicon.ico" />
           <meta name="emotion-insertion-point" content="" />
           {(this.props as any).emotionStyleTags}
+          <meta property="al:android:url" content="unitydl" />
+          <meta
+            property="al:android:package"
+            content="com.metacamp.metathere"
+          />
+          <meta property="al:android:app_name" content="there" />
         </Head>
         <body>
           <Main />
