@@ -6,7 +6,7 @@ export default function Home() {
   function openAndroid() {
     const path = 'metavity';
     const param = 'dhLAheDvH6pE6Bu9d2vYXv';
-    const intentUri = `intent://${path}?param=${param}#Intent;scheme=there_v1;package=com.metacamp.metathere;end`;
+    const intentUri = `intent://${path}?${param}#Intent;scheme=there_v1;package=com.metacamp.metathere;end`;
     location.href = intentUri;
 
     alert(`${intentUri}/초대코드: dhLAheDvH6pE6Bu9d2vYXv`);
