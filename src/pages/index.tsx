@@ -4,9 +4,12 @@ export default function Home() {
   const androidMarketUrl = 'market://details?id=' + packageName + '&hl=ko';
 
   function openAndroid() {
-    const intentUri =
-      'intent://path/#Intent;scheme=there_v1;package=com.metacamp.metathere;end';
-    alert(intentUri);
+    const path = 'metavity';
+    const param = 'dhLAheDvH6pE6Bu9d2vYXv';
+    const intentUri = `intent://${path}?param=${param}#Intent;scheme=there_v1;package=com.metacamp.metathere;end`;
+    location.href = intentUri;
+
+    alert(`${intentUri}/초대코드: dhLAheDvH6pE6Bu9d2vYXv`);
     location.href = intentUri;
   }
 
