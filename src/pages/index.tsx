@@ -30,7 +30,7 @@ export default function Home() {
     if (isAndroid) {
       openAndroid();
     } else if (isDesktop) {
-      location.href = `Dev://kwon/백업/there.exe --url="${`there_v1://${path}?${param}`}"`;
+      location.href = `Dev://kwon/백업/there.exe --url="${path}?${param}"`;
     }
   }, []);
 
