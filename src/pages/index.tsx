@@ -1,4 +1,27 @@
 export default function Home() {
+  // const packageName = 'com.metacamp.metathere';
+  // const scheme = 'myapp://path';
+  // const storeUrl = 'market://details?id=' + packageName + '&hl=ko';
+
+  // // Intent 생성
+  // let intent = null;
+  // if (navigator.userAgent.match(/Android/i)) {
+  //   intent = Intent('android.intent.action.VIEW');
+  //   intent.addCategory('android.intent.category.BROWSABLE');
+  //   intent.setData(Uri.parse(scheme));
+  //   intent.setPackage(packageName);
+  // }
+
+  // // Intent 실행
+  // if (intent !== null && intent.resolveActivity(packageManager) !== null) {
+  //   // 해당 어플이 설치되어 있을 때
+  //   location.href = 'intent://com.metacamp.metathere';
+  //   // startActivity(intent);
+  // } else {
+  //   // 해당 어플이 설치되어 있지 않을 때
+  //   location.href = storeUrl;
+  // }
+
   function checkInstallApp() {
     function clearTimers() {
       clearInterval(check);
@@ -30,7 +53,7 @@ export default function Home() {
   };
 
   const testClick = () => {
-    const url = 'file:///data/data/there';
+    const url = 'com.metacamp.metathere';
     alert(url);
     location.href = url;
 
