@@ -1,7 +1,7 @@
 import { NextSeo } from 'next-seo';
 import { useEffect } from 'react';
 
-console.log('ver 2');
+console.log('ver 3');
 
 export default function Home() {
   const path = 'metavity';
@@ -19,7 +19,17 @@ export default function Home() {
   }
 
   useEffect(() => {
-    openAndroid();
+    const userAgent = navigator.userAgent;
+
+    const isAndroid = userAgent.match(/Android/i);
+    const isIOS = userAgent.match(/iPhone|iPad|iPod/i);
+    const isDesktop = !isAndroid && !isIOS;
+
+    if (isAndroid) {
+      openAndroid();
+    } else if (isDesktop) {
+      location.href = `Dev://Program Files/THERE/there.exe --url="there_v1://#${path}/${param}"`;
+    }
   }, []);
 
   const Index = () => {
@@ -28,12 +38,6 @@ export default function Home() {
         <NextSeo
           title="WIT"
           description="메타비티 WIT 환영합니다."
-          additionalLinkTags={[
-            {
-              rel: 'alternate',
-              href: intentUri,
-            },
-          ]}
           openGraph={{
             type: 'website',
             title: 'WIT',
