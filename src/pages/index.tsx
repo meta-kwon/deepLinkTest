@@ -1,11 +1,26 @@
 import { NextSeo } from 'next-seo';
+import { useEffect } from 'react';
 
-console.log('ver 1');
+console.log('ver 2');
 
 export default function Home() {
   const path = 'metavity';
   const param = 'dhLAheDvH6pE6Bu9d2vYXv';
   const intentUri = `intent://${path}?${param}#Intent;scheme=there_v1;package=com.metacamp.metathere;end`;
+
+  function openAndroid() {
+    const path = 'metavity';
+    const param = 'dhLAheDvH6pE6Bu9d2vYXv';
+    const intentUri = `intent://${path}?${param}#Intent;scheme=there_v1;package=com.metacamp.metathere;end`;
+    location.href = intentUri;
+
+    alert(`${intentUri}/초대코드: dhLAheDvH6pE6Bu9d2vYXv`);
+    location.href = intentUri;
+  }
+
+  useEffect(() => {
+    openAndroid();
+  }, []);
 
   const Index = () => {
     return (
