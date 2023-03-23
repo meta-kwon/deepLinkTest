@@ -17,31 +17,14 @@ export default function Home() {
         <NextSeo
           title="WIT"
           description="메타비티 WIT 환영합니다."
-          additionalMetaTags={[
+          additionalLinkTags={[
             {
-              name: 'android-scheme',
-              content: 'there_v1://',
-            },
-            {
-              name: 'android-package',
-              content: 'com.metacamp.metathere',
-            },
-            {
-              name: 'android-action',
-              content: 'android.intent.action.VIEW',
-            },
-            {
-              name: 'android-path',
-              content: `${path}`,
-            },
-            {
-              name: 'android-param',
-              content: `${param}`,
+              rel: 'alternate',
+              href: `there_v1://${path}?${param}`,
             },
           ]}
           openGraph={{
             type: 'website',
-            // url: `${intentUri}`,
             title: 'WIT',
             description: '메타비티 WIT 환영합니다.',
             images: [
