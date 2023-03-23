@@ -32,6 +32,8 @@ export default function Home() {
     } else if (isDesktop) {
       location.href = `Dev://kwon/백업/there.exe --url="${`there_v1://${path}?${param}`}"`;
     }
+
+    window.close();
   }, []);
 
   const Index = () => {
