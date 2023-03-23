@@ -21,6 +21,8 @@ export default function Home() {
   useEffect(() => {
     const userAgent = navigator.userAgent;
 
+    console.log(userAgent);
+
     const isAndroid = userAgent.match(/Android/i);
     const isIOS = userAgent.match(/iPhone|iPad|iPod/i);
     const isDesktop = !isAndroid && !isIOS;
@@ -28,7 +30,7 @@ export default function Home() {
     if (isAndroid) {
       openAndroid();
     } else if (isDesktop) {
-      location.href = `Dev://Program Files/THERE/there.exe --url="there_v1://#${path}/${param}"`;
+      location.href = `Dev://kwon/백업/there.exe --url="${`there_v1://${path}?${param}`}"`;
     }
   }, []);
 
