@@ -58,8 +58,8 @@ export default function Home() {
     return (
       <>
         <NextSeo
-          title="메타캠프"
-          description="메타캠프입니다"
+          title={title}
+          description={description}
           openGraph={{
             type: 'website',
             title: title,
