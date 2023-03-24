@@ -1,9 +1,15 @@
 import { NextSeo } from 'next-seo';
-import { useEffect } from 'react';
+import { setConfig } from 'next/config';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
-console.log('ver 3');
+console.log('ver 4');
 
 export default function Home() {
+  const router = useRouter();
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [image, setImage] = useState('');
   const path = 'metavity';
   const param = 'dhLAheDvH6pE6Bu9d2vYXv';
   const intentUri = `intent://${path}?${param}#Intent;scheme=there_v1;package=com.metacamp.metathere;end`;
@@ -19,34 +25,43 @@ export default function Home() {
   }
 
   useEffect(() => {
-    const userAgent = navigator.userAgent;
+    if (Object.keys(router.query).length > 0) {
+      console.log(router.query);
+      const { title, description, image, code } = router.query;
 
-    alert(userAgent);
+      setTitle(title as string);
+      setDescription(description as string);
+      setImage(image as string);
 
-    const isAndroid = userAgent.match(/Android/i);
-    const isIOS = userAgent.match(/iPhone|iPad|iPod/i);
-    const isDesktop = !isAndroid && !isIOS;
+      const userAgent = navigator.userAgent;
 
-    if (isAndroid) {
-      openAndroid();
-    } else if (isDesktop) {
-      location.href = `there://${path}?${param}`;
+      // alert(userAgent);
+
+      const isAndroid = userAgent.match(/Android/i);
+      const isIOS = userAgent.match(/iPhone|iPad|iPod/i);
+      const isDesktop = !isAndroid && !isIOS;
+
+      if (isAndroid) {
+        openAndroid();
+      } else if (isDesktop) {
+        location.href = `there://${path}?${code}`;
+      }
     }
-  }, []);
+  }, [router.query]);
 
   const Index = () => {
     return (
       <>
         <NextSeo
-          title="WIT"
-          description="메타비티 WIT 환영합니다."
+          title={title}
+          description={description}
           openGraph={{
             type: 'website',
-            title: 'WIT',
-            description: '메타비티 WIT 환영합니다.',
+            title,
+            description,
             images: [
               {
-                url: '/wit.png',
+                url: `/${image}`,
                 width: 800,
                 height: 400,
               },
