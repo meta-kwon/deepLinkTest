@@ -10,6 +10,10 @@ export default function Home() {
   const [description, setDescription] = useState('');
   const [image, setImage] = useState('');
 
+  const ogTitle = `${router.query.title}`;
+  const ogDescription = `${router.query.description}`;
+  const ogUrl = `${router.query.image}`;
+
   const path = 'metavity';
   const param = 'dhLAheDvH6pE6Bu9d2vYXv';
   const intentUri = `intent://${path}?${param}#Intent;scheme=there_v1;package=com.metacamp.metathere;end`;
@@ -52,15 +56,15 @@ export default function Home() {
     return (
       <>
         <NextSeo
-          title={title}
-          description={description}
+          title={ogTitle}
+          description={ogDescription}
           openGraph={{
             type: 'website',
-            title: title,
-            description: description,
+            title: ogTitle,
+            description: ogDescription,
             images: [
               {
-                url: `/${image}`,
+                url: `/${ogUrl}`,
                 width: 800,
                 height: 400,
               },
