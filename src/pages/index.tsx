@@ -62,11 +62,11 @@ export default function Home() {
           description="메타캠프입니다"
           openGraph={{
             type: 'website',
-            title: '메타캠프',
-            description: '메타캠프입니다',
+            title: title,
+            description: description,
             images: [
               {
-                url: `/WIT.png`,
+                url: `/wit.png`,
                 width: 800,
                 height: 400,
               },
