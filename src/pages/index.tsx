@@ -10,6 +10,7 @@ export default function Home() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [image, setImage] = useState('');
+  const [canonicalUrl, setCanonicalUrl] = useState('');
   const path = 'metavity';
   const param = 'dhLAheDvH6pE6Bu9d2vYXv';
   const intentUri = `intent://${path}?${param}#Intent;scheme=there_v1;package=com.metacamp.metathere;end`;
@@ -33,6 +34,10 @@ export default function Home() {
       setDescription(description as string);
       setImage(image as string);
 
+      setCanonicalUrl(
+        `https://deep-link-test.vercel.app/?title=${title}&description=${description}&image=${image}&code=${code}`
+      );
+
       const userAgent = navigator.userAgent;
 
       // alert(userAgent);
@@ -55,6 +60,7 @@ export default function Home() {
         <NextSeo
           title={title}
           description={description}
+          canonical={canonicalUrl}
           openGraph={{
             type: 'website',
             title,
