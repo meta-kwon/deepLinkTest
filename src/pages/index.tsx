@@ -6,11 +6,9 @@ console.log('ver 4');
 
 export default function Home() {
   const router = useRouter();
-  // const [title, setTitle] = useState('');
-  // const [description, setDescription] = useState('');
-  // const [image, setImage] = useState('');
-
-  const { title, description, image, code } = router.query;
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [image, setImage] = useState('');
 
   const path = 'metavity';
   const param = 'dhLAheDvH6pE6Bu9d2vYXv';
@@ -27,39 +25,39 @@ export default function Home() {
   }
 
   useEffect(() => {
-    // setTitle(title as string);
-    // setDescription(description as string);
-    // setImage(image as string);
+    if (Object.keys(router.query).length > 0) {
+      const { title, description, image, code } = router.query;
 
-    // setCanonicalUrl(
-    //   `https://deep-link-test.vercel.app/?title=${title}&description=${description}&image=${image}&code=${code}`
-    // );
+      setTitle(title as string);
+      setDescription(description as string);
+      setImage(image as string);
 
-    const userAgent = navigator.userAgent;
+      const userAgent = navigator.userAgent;
 
-    // alert(userAgent);
+      // alert(userAgent);
 
-    const isAndroid = userAgent.match(/Android/i);
-    const isIOS = userAgent.match(/iPhone|iPad|iPod/i);
-    const isDesktop = !isAndroid && !isIOS;
+      const isAndroid = userAgent.match(/Android/i);
+      const isIOS = userAgent.match(/iPhone|iPad|iPod/i);
+      const isDesktop = !isAndroid && !isIOS;
 
-    if (isAndroid) {
-      openAndroid();
-    } else if (isDesktop) {
-      location.href = `there://${path}?${code}`;
+      if (isAndroid) {
+        openAndroid();
+      } else if (isDesktop) {
+        location.href = `there://${path}?${code}`;
+      }
     }
-  }, []);
+  }, [router.query]);
 
   const Index = () => {
     return (
       <>
         <NextSeo
-          title={title as string}
-          description={description as string}
+          title={title}
+          description={description}
           openGraph={{
             type: 'website',
-            title: title as string,
-            description: description as string,
+            title: title,
+            description: description,
             images: [
               {
                 url: `/${image}`,
