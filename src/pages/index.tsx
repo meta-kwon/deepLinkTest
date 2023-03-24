@@ -21,7 +21,7 @@ export default function Home() {
   useEffect(() => {
     const userAgent = navigator.userAgent;
 
-    console.log(userAgent);
+    alert(userAgent);
 
     const isAndroid = userAgent.match(/Android/i);
     const isIOS = userAgent.match(/iPhone|iPad|iPod/i);
