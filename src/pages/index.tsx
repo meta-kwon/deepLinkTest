@@ -58,20 +58,20 @@ export default function Home() {
     return (
       <>
         <NextSeo
-          title={title}
-          description={description}
-          canonical={canonicalUrl}
+          title="메타캠프"
+          description="메타캠프입니다"
           openGraph={{
             type: 'website',
-            title,
-            description,
+            title: '메타캠프',
+            description: '메타캠프입니다',
             images: [
               {
-                url: `/${image}`,
+                url: `/WIT.png`,
                 width: 800,
                 height: 400,
               },
             ],
+            url: canonicalUrl,
           }}
         />
       </>
