@@ -10,8 +10,10 @@ export default function Home() {
   const [description, setDescription] = useState('');
   const [image, setImage] = useState('');
 
-  const ogTitle = `${router.query.title}`;
-  const ogDescription = `${router.query.description}`;
+  const ogTitle = `${decodeURIComponent(router.query.title as string)}`;
+  const ogDescription = `${decodeURIComponent(
+    router.query.description as string
+  )}`;
   const ogUrl = `${router.query.image}`;
   console.log(ogTitle, ogDescription);
   const path = 'metavity';
@@ -32,9 +34,9 @@ export default function Home() {
     if (Object.keys(router.query).length > 0) {
       const { title, description, image, code } = router.query;
 
-      setTitle(title as string);
-      setDescription(description as string);
-      setImage(image as string);
+      setTitle(decodeURIComponent(title as string));
+      setDescription(decodeURIComponent(description as string));
+      setImage(decodeURIComponent(image as string));
 
       const userAgent = navigator.userAgent;
 
@@ -57,17 +59,15 @@ export default function Home() {
       <>
         {ogTitle && (
           <NextSeo
-            title={ogTitle}
-            description={ogDescription}
+            title="there"
+            description="세상의 모든 사람들을 연결하는 새로운 가상 세계"
             openGraph={{
               type: 'website',
-              title: ogTitle,
-              description: ogDescription,
+              title: 'there',
+              description: '세상의 모든 사람들을 연결하는 새로운 가상 세계',
               images: [
                 {
-                  url: `${ogUrl}`,
-                  width: 800,
-                  height: 400,
+                  url: `/there.png`,
                 },
               ],
             }}
@@ -92,4 +92,19 @@ export default function Home() {
       </div>
     </>
   );
+}
+
+export async function getStaticProps(context: any) {
+  const { params } = context;
+  // const { title, description, image, code } = params;
+
+  console.log(context, params);
+
+  return {
+    props: {
+      title: 1,
+      description: 1,
+      imageUrl: 1,
+    },
+  };
 }
