@@ -6,10 +6,12 @@ console.log('ver 4');
 
 export default function Home() {
   const router = useRouter();
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [image, setImage] = useState('');
-  const [canonicalUrl, setCanonicalUrl] = useState('');
+  // const [title, setTitle] = useState('');
+  // const [description, setDescription] = useState('');
+  // const [image, setImage] = useState('');
+
+  const { title, description, image, code } = router.query;
+
   const path = 'metavity';
   const param = 'dhLAheDvH6pE6Bu9d2vYXv';
   const intentUri = `intent://${path}?${param}#Intent;scheme=there_v1;package=com.metacamp.metathere;end`;
@@ -25,44 +27,39 @@ export default function Home() {
   }
 
   useEffect(() => {
-    if (Object.keys(router.query).length > 0) {
-      console.log(router.query);
-      const { title, description, image, code } = router.query;
+    // setTitle(title as string);
+    // setDescription(description as string);
+    // setImage(image as string);
 
-      setTitle(title as string);
-      setDescription(description as string);
-      setImage(image as string);
+    // setCanonicalUrl(
+    //   `https://deep-link-test.vercel.app/?title=${title}&description=${description}&image=${image}&code=${code}`
+    // );
 
-      setCanonicalUrl(
-        `https://deep-link-test.vercel.app/?title=${title}&description=${description}&image=${image}&code=${code}`
-      );
+    const userAgent = navigator.userAgent;
 
-      const userAgent = navigator.userAgent;
+    // alert(userAgent);
 
-      // alert(userAgent);
+    const isAndroid = userAgent.match(/Android/i);
+    const isIOS = userAgent.match(/iPhone|iPad|iPod/i);
+    const isDesktop = !isAndroid && !isIOS;
 
-      const isAndroid = userAgent.match(/Android/i);
-      const isIOS = userAgent.match(/iPhone|iPad|iPod/i);
-      const isDesktop = !isAndroid && !isIOS;
-
-      if (isAndroid) {
-        openAndroid();
-      } else if (isDesktop) {
-        location.href = `there://${path}?${code}`;
-      }
+    if (isAndroid) {
+      openAndroid();
+    } else if (isDesktop) {
+      location.href = `there://${path}?${code}`;
     }
-  }, [router.query]);
+  }, []);
 
   const Index = () => {
     return (
       <>
         <NextSeo
-          title={title}
-          description={description}
+          title={title as string}
+          description={description as string}
           openGraph={{
             type: 'website',
-            title: title,
-            description: description,
+            title: title as string,
+            description: description as string,
             images: [
               {
                 url: `/${image}`,
@@ -70,7 +67,6 @@ export default function Home() {
                 height: 400,
               },
             ],
-            url: canonicalUrl,
           }}
         />
       </>
