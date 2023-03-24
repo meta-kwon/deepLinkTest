@@ -65,7 +65,7 @@ export default function Home() {
               description: ogDescription,
               images: [
                 {
-                  url: `/${ogUrl}`,
+                  url: `${ogUrl}`,
                   width: 800,
                   height: 400,
                 },
