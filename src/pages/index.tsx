@@ -66,7 +66,7 @@ export default function Home() {
             description: description,
             images: [
               {
-                url: `/wit.png`,
+                url: `/${image}`,
                 width: 800,
                 height: 400,
               },
