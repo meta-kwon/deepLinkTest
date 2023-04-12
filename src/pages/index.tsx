@@ -28,7 +28,11 @@ export default function Home() {
       if (isAndroid) {
         location.href = `intent://n?${params}#Intent;scheme=thereopen;package=com.metacamp.metathere;end`;
       } else if (isIOS) {
-        location.href = `thereopen://n?${params}`;
+        try {
+          location.href = `thereopen01://n?${params}`;
+        } finally {
+          location.href = 'https://apps.apple.com/kr/app/there/id1639032724';
+        }
       } else if (isMac) {
         location.href = `thereopen://n?${params}`;
       } else {
