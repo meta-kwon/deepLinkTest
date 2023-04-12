@@ -28,7 +28,7 @@ export default function Home() {
       if (isAndroid) {
         location.href = `intent://n?${params}#Intent;scheme=thereopen;package=com.metacamp.metathere;end`;
       } else if (isIOS) {
-        location.href = `thereopen://n?${params}`;
+        location.href = `thereopen1://n?${params}`;
       } else if (isMac) {
         location.href = `thereopen://n?${params}`;
       } else {
