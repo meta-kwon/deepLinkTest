@@ -1,45 +1,44 @@
 import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-
-console.log('ver 5');
+import querystring from 'querystring';
 
 export default function Home() {
   const router = useRouter();
 
-  const path = 'metavity';
-  const param = 'dhLAheDvH6pE6Bu9d2vYXv';
-  const intentUri = `intent://${path}?${param}#Intent;scheme=there_v1;package=com.metacamp.metathere;end`;
-
-  function openAndroid(code: string) {
-    const path = 'metavity';
-    const param = 'dhLAheDvH6pE6Bu9d2vYXv';
-    const intentUri = `intent://${path}?${code}#Intent;scheme=there_v1;package=com.metacamp.metathere;end`;
-    location.href = intentUri;
-  }
-
   useEffect(() => {
     if (Object.keys(router.query).length > 0) {
-      const { code } = router.query;
+      const { sid, context } = router.query;
+
+      if (!sid && !context) {
+        alert(`You can't access There.`);
+        return;
+      }
+
+      const fallbackUrl = 'null';
 
       const userAgent = navigator.userAgent;
 
-      // alert(userAgent);
-
       const isAndroid = userAgent.match(/Android/i);
       const isIOS = userAgent.match(/iPhone|iPad|iPod/i);
-      const isDesktop = !isAndroid && !isIOS;
+      const isMac = userAgent.match(/Mac/i);
+
+      const params = decodeURIComponent(querystring.stringify(router.query));
 
       if (isAndroid) {
-        openAndroid(code as string);
-      } else if (isDesktop) {
-        location.href = `there://${path}?${code}`;
+        location.href = `intent://n?${params}#Intent;scheme=thereopen;package=com.metacamp.metathere;end`;
+      } else if (isIOS) {
+        location.href = `thereopen://n?${params}`;
+      } else if (isMac) {
+        location.href = `thereopen://n?${params}`;
+      } else {
+        location.href = `thereopen1://n?${params}`;
       }
     }
   }, [router.query]);
 
-  const Index = () => {
-    return (
+  return (
+    <>
       <NextSeo
         title="there"
         description="세상의 모든 사람들을 연결하는 새로운 가상 세계"
@@ -54,8 +53,6 @@ export default function Home() {
           ],
         }}
       />
-    );
-  };
-
-  return <Index />;
+    </>
+  );
 }
