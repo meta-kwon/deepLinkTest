@@ -28,11 +28,7 @@ export default function Home() {
       if (isAndroid) {
         location.href = `intent://n?${params}#Intent;scheme=thereopen;package=com.metacamp.metathere;end`;
       } else if (isIOS) {
-        try {
-          location.href = `thereopen://n?${params}`;
-        } finally {
-          location.href = 'https://apps.apple.com/kr/app/there/id1639032724';
-        }
+        location.href = `thereopen://n?${params}`;
       } else if (isMac) {
         location.href = `thereopen://n?${params}`;
       } else {
@@ -43,6 +39,9 @@ export default function Home() {
       setTimeout(() => {
         if (document.hidden) {
           return;
+        }
+        if (isIOS) {
+          location.href = 'https://apps.apple.com/kr/app/there/id1639032724';
         }
         window.location.href = fallbackUrl;
       }, 3000);
@@ -65,7 +64,6 @@ export default function Home() {
           ],
         }}
       />
-      안녕
     </>
   );
 }
