@@ -15,7 +15,7 @@ export default function Home() {
         return;
       }
 
-      const fallbackUrl = 'null';
+      const fallbackUrl = 'https://there.space';
 
       const userAgent = navigator.userAgent;
 
@@ -34,6 +34,14 @@ export default function Home() {
       } else {
         location.href = `thereopen1://n?${params}`;
       }
+
+      // Navigate to fallbackUrl if the scheme is not registered.
+      setTimeout(() => {
+        if (document.hidden) {
+          return;
+        }
+        window.location.href = fallbackUrl;
+      }, 3000);
     }
   }, [router.query]);
 
